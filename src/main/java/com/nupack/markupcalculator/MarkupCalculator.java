@@ -5,21 +5,21 @@ import java.math.BigInteger;
 
 public class MarkupCalculator {
 
-    private static BigDecimal determineMarkup (BigInteger numPeople) {
-        return new BigDecimal (numPeople).multiply(new BigDecimal (0.012));
+    private static BigDecimal determineMarkup(BigInteger numPeople) {
+        return new BigDecimal(numPeople).multiply(new BigDecimal(0.012));
     }
-
-    private static BigDecimal determineMarkup (BigInteger numPeople, ProductType type)
+    
+    private static BigDecimal determineMarkup(BigInteger numPeople, ProductType type)
         throws IllegalArgumentException {
         //tests if numPeople is less than 0
         if (numPeople.compareTo(BigInteger.valueOf(0)) == -1) {
-            throw new IllegalArgumentException ("Number of people cannot be negative");
+            throw new IllegalArgumentException("Number of people cannot be negative");
         }
 
-        return determineMarkup(numPeople).add(new BigDecimal (determineMarkup(type))) ;
+        return determineMarkup(numPeople).add(new BigDecimal(determineMarkup(type))) ;
     }
 
-    private static double determineMarkup (ProductType type) {
+    private static double determineMarkup(ProductType type) {
         switch (type) {
         case PHARMA:
             return 0.075;
@@ -34,19 +34,19 @@ public class MarkupCalculator {
 
 	/**
 	 * Determine the price assuming there is no markup for the type of object being purchased, and 0 people
-     * are required to work on the job.
+	 * are required to work on the job.
 	 *
 	 * @param basePrice The price of the item being purchased
 	 * @return The price of the item after markup has been applied
 	 *
 	 * @throws IllegalArgumentException
 	 */
-    public static BigDecimal determinePrice (BigDecimal basePrice) throws IllegalArgumentException {
+    public static BigDecimal determinePrice(BigDecimal basePrice) throws IllegalArgumentException {
         //tests if basePrice is less than 0
-        if (basePrice.compareTo(new BigDecimal (0)) == -1) {
-            throw new IllegalArgumentException ("Base price cannot be negative");
+        if (basePrice.compareTo(new BigDecimal(0)) == -1) {
+            throw new IllegalArgumentException("Base price cannot be negative");
         }
-        return basePrice.multiply(new BigDecimal (1.05));
+        return basePrice.multiply(new BigDecimal(1.05));
     }
 
 	/**
@@ -58,14 +58,14 @@ public class MarkupCalculator {
 	 *
 	 * @throws IllegalArgumentException
 	 */
-    public static BigDecimal determinePrice (BigDecimal basePrice, BigInteger numPeople)
+    public static BigDecimal determinePrice(BigDecimal basePrice, BigInteger numPeople)
         throws IllegalArgumentException {
         
         if (numPeople.compareTo(BigInteger.valueOf(0)) == -1) {
-            throw new IllegalArgumentException ("Number of people cannot be negative");
+            throw new IllegalArgumentException("Number of people cannot be negative");
         }
         
-        return determinePrice (basePrice).multiply (determineMarkup (numPeople).add (new BigDecimal (1)));
+        return determinePrice(basePrice).multiply(determineMarkup(numPeople).add(new BigDecimal(1)));
     }
 
 	/**
@@ -78,9 +78,9 @@ public class MarkupCalculator {
 	 *
 	 * @throws IllegalArgumentException
 	 */
-    public static BigDecimal determinePrice (BigDecimal basePrice, BigInteger numPeople, ProductType type)
+    public static BigDecimal determinePrice(BigDecimal basePrice, BigInteger numPeople, ProductType type)
         throws IllegalArgumentException {
         
-        return determinePrice (basePrice).multiply (determineMarkup (numPeople, type).add (new BigDecimal (1)));
+        return determinePrice(basePrice).multiply(determineMarkup(numPeople, type).add(new BigDecimal (1)));
     }
 }
