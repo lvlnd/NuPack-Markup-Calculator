@@ -1,0 +1,11 @@
+Installation instructions:
+
+  $ git clone git://github.com/lvlnd/NuPack-Markup-Calculator.git
+  $ cd NuPack-Markup-Calculator
+  $ mvn package
+
+To run the tests:
+
+  $ mvn test
+  
+or run the included MarkupCalculatorTestRunner class' main method.
